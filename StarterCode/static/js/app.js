@@ -1,6 +1,7 @@
 // from data.js
 var tableData = data;
 var tbody = d3.select("tbody")
+var filter = d3.select("#datetime")
 
 // console.log(tableData)
 
@@ -12,3 +13,16 @@ tableData.forEach((alienSightings) => {
       cell.text(value);
     });
   });
+
+var newDate = filter.on("change", function(){
+    d3.event.target.value;
+})
+
+function selectDate(date) {
+    return date.datetime === newDate
+}
+
+var selectedDate = tableData.filter(selectDate)
+
+console.log(selectedDate)
+
