@@ -1,17 +1,25 @@
 // from data.js
 var tableData = data;
 var tbody = d3.select("tbody")
-var filter = d3.select("#datetime")
+var button = d3.select("#filter-btn")
 
 // console.log(tableData)
 
 // YOUR CODE HERE!
+tableData.forEach((alienSightings) => {
+    var row = tbody.append("tr");
+    Object.entries(alienSightings).forEach(([key, value]) => {
+      var cell = row.append("td");
+      cell.text(value);
+    });
+  });
 
+// button.on("click", runFilter)
 
-filter.on("change", runFilter)
+button.on("click", function() {
+    // d3.event.preventDefault();
 
-function runFilter() {
-    d3.event.preventDefault();
+    tbody.html("")
 
     var inputDate = d3.select("#datetime")
 
@@ -20,6 +28,7 @@ function runFilter() {
     var filterDate = tableData.filter(sighting => sighting.datetime === newDate)
 
     console.log(filterDate)
+
     if (newDate){
         filterDate.forEach((alienSightings) => {
             var row = tbody.append("tr");
@@ -37,8 +46,10 @@ function runFilter() {
             });
           });
     }
+        
     
-}
+    
+})
 
 
 
