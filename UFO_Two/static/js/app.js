@@ -16,7 +16,7 @@ tableData.forEach((alienSightings) => {
 
 // button.on("click", runFilter)
 
-button.on("click", function() {
+button.on("change", function() {
     // d3.event.preventDefault();
 
     tbody.html("")
