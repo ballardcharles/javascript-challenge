@@ -21,16 +21,20 @@ button.on("click", function() {
 
     tbody.html("")
 
-    var inputDate = d3.select("#datetime")
+    var inputValue = d3.select("#input")
 
-    var newDate = inputDate.property("value")
+    var searchValue = inputValue.property("value")
 
-    var filterDate = tableData.filter(sighting => sighting.datetime === newDate)
+    var filteredValue = tableData.filter(sighting => sighting.datetime === searchValue ||
+                                          sighting.city === searchValue ||
+                                          sighting.state === searchValue ||
+                                          sighting.country === searchValue ||
+                                          sighting.shape === searchValue);
 
-    console.log(filterDate)
+    console.log(filteredValue)
 
-    if (newDate){
-        filterDate.forEach((alienSightings) => {
+    if (searchValue){
+        filteredValue.forEach((alienSightings) => {
             var row = tbody.append("tr");
             Object.entries(alienSightings).forEach(([key, value]) => {
               var cell = row.append("td");
