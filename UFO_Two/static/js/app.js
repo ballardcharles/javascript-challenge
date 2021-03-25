@@ -2,6 +2,7 @@
 var tableData = data;
 var tbody = d3.select("tbody")
 var button = d3.select("#filter-btn")
+var form = d3.select("#form")
 
 // console.log(tableData)
 
@@ -14,10 +15,8 @@ tableData.forEach((alienSightings) => {
     });
   });
 
-// button.on("click", runFilter)
-
-button.on("change", function() {
-    // d3.event.preventDefault();
+function runFilter(event) {
+    d3.event.preventDefault();
 
     tbody.html("")
 
@@ -49,19 +48,8 @@ button.on("change", function() {
               cell.text(value);
             });
           });
-    }
-        
-    
-    
-})
+    }   
+}
 
-
-
-// function selectDate(date) {
-//     return date.datetime === newDate
-// }
-
-// var selectedDate = tableData.filter(selectDate)
-
-// console.log(selectedDate)
-
+button.on("click", runFilter)
+form.on("submit", runFilter)
